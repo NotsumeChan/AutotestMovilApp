@@ -1,0 +1,11 @@
+<ReactNativeToggleElement
+value={isEnabled}
+onPress={toggleSwitch}
+leftComponent={<Text style={{ width: 65 }}>Ingresar</Text>}
+rightComponent={<Text style={{ width: 85  }}>Registrarse</Text>}
+trackBarStyle={{ backgroundColor: "transparent", borderColor: "#E7D6BC" }}
+trackBar={{borderWidth:2}}
+thumbButton={{ width: 75, height: 50}}
+
+containerStyle={{ borderRadius: 25, overflow: "hidden", justifyContent: "center", marginBottom:30, height : 50, width: 200}}
+/>
