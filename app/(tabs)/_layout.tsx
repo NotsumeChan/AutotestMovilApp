@@ -4,6 +4,7 @@ import React from 'react';
 import { TabBarIcon } from '@/components/navigation/TabBarIcon';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import styles from '@/components/styles';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -12,8 +13,8 @@ export default function TabLayout() {
     <Tabs
     
     screenOptions={{
-      tabBarStyle:{backgroundColor : "#085877", borderTopColor: "#085877"},
-      tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+      tabBarStyle:{backgroundColor : Colors.light, borderTopColor: Colors.light},
+      tabBarActiveTintColor: Colors.beach,
       headerShown: false,
     }}>   
     
@@ -21,7 +22,7 @@ export default function TabLayout() {
         name="index"
         options={{
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
+            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} style={focused ? styles.BottomNavBarIcons : {}}/>
           ),
           title: ""
         }}
@@ -30,7 +31,7 @@ export default function TabLayout() {
         name="test"
         options={{
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
+            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} style={focused ? styles.BottomNavBarIcons : {}} />
           ),
           title: ""
         }}
@@ -39,7 +40,7 @@ export default function TabLayout() {
         name="teacher"
         options={{
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'person' : 'person-outline'} color={color} />
+            <TabBarIcon name={focused ? 'person' : 'person-outline'} color={color} style={focused ? styles.BottomNavBarIcons : {}}/>
           ),
           title: ""
         }}
@@ -48,7 +49,7 @@ export default function TabLayout() {
         name="profile"
         options={{
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'settings' : 'settings-outline'} color={color} />
+            <TabBarIcon name={focused ? 'settings' : 'settings-outline'} color={color} style={focused ? styles.BottomNavBarIcons : {}}/>
           ),
           title: ""
         }}

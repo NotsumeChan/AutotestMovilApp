@@ -1,10 +1,14 @@
 import { Text, View, StyleSheet, FlatList } from "react-native";
 import { Link, router } from "expo-router";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useLocalSearchParams } from "expo-router";
+import { LinearGradient } from "expo-linear-gradient";
+import { Colors } from "@/constants/Colors";
+import { Image } from "expo-image";
 //import BottomNavBar from "../../component/BottomNavBar";
 
 const Profile = () => {
+  const Context = {User: {name: "Mariela"}};
   const params = useLocalSearchParams();
   const [listConfig, setListConfig] = useState([
     {
@@ -25,7 +29,9 @@ const Profile = () => {
   ]);
     return(
         <View style={styles.container}>
-            <Text style={styles.text}>Bienvenido a tu perfil {params.uid}</Text> 
+          <LinearGradient colors={['#E8D7BD' , '#055776']} start={{x:0.2 , y:0.6}} end={{x:0.4,y:1}} style={{position: 'absolute',left: 0,right: 0,top: 0,height: "100%"}} />
+            <Image source={require('../../assets/images/UserIcon.svg')} style={{width: 271, height: 271, marginVertical: 20}}/>
+            <Text style={{color: Colors.dark, fontSize: 32, marginVertical: 20, position:"absolute", top:200}}>{Context.User.name}</Text>
             <FlatList
             data={listConfig}
             renderItem={({ item }) => (
@@ -45,8 +51,14 @@ const styles = StyleSheet.create({
       backgroundColor: "#51565e",
     },
     text: {
-      color: "#fff",
-      padding: 5,
+      fontSize:10, 
+        backgroundColor:Colors.light,
+        textAlign: 'center',
+        paddingVertical:12,
+        marginVertical:20,
+        overflow:"hidden", 
+        color:"#FFFFFF", 
+        width:400,
     },
 });
 

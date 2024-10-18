@@ -4,22 +4,23 @@ import Collapsible from "react-native-collapsible";
 import { Image } from "expo-image";
 //import BottomNavBar from "../../component/BottomNavBar";
 import { Link, router } from "expo-router";
-import { ProgressBar, MD3Colors } from "react-native-paper";
+import { Appbar } from "react-native-paper";
 //import Icon from 'react-native-vector-icons/MaterialIcons'; 
 import { LinearGradient } from 'expo-linear-gradient';
+import { Colors } from "@/constants/Colors";
 
 const Home = () => {
   
   const [data, setData] = useState([
     {
-      title: 'Curso clase B',
+      title: 'Leccion 1',
       isCollapsed: true,
       icon: "directions-car",
       lessonid: "0",
       content: "lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec magna sed odio blandit porta. Nullam",
     },
     {
-      title: 'Curso Clase C',
+      title: 'Leccion 2',
       isCollapsed: true,
       icon: "motorcycle",
       content: "lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec magna sed odio blandit porta. Nullam",
@@ -41,9 +42,12 @@ const Home = () => {
   //color={MD3Colors.blue500}
   return (
     <View style={styles.container}>
-      <LinearGradient colors={['transparent' , '#055776']} start={{x:0.4 , y:0.5}} end={{x:0,y:.85}} style={{position: 'absolute',left: 0,right: 0,top: 0,height: "100%"}} />
+      <LinearGradient colors={[Colors.beach , Colors.light]} start={{x:0.4 , y:0.5}} end={{x:0,y:.85}} style={{position: 'absolute',left: 0,right: 0,top: 0,height: "100%"}} />
+      <Appbar.Header  style={{left:0, height:40, backgroundColor:"transparent", position:"absolute"}} >
+        <Appbar.BackAction onPress={() => {router.back()}}/>
+      </Appbar.Header>
       <View>
-        <Text style={{fontSize:32, marginTop:48, marginBottom:28}}>Mis cursos</Text>
+        <Text style={{fontSize:32, marginTop:48, marginBottom:28, textAlign:"center"}}>Lecciones</Text>
       </View>
       <FlatList
         data={data}
@@ -61,12 +65,8 @@ const Home = () => {
                 <Text style={[styles.text, {padding:13}]}>{item.content}</Text>
                 
               </Collapsible>
-              <View style={{flexDirection: "row", justifyContent: "center"}}>
-                <Text style={styles.text}>Progreso</Text>
-                <ProgressBar progress={0}  style={{width : 192, height:7, margin:"auto", borderRadius:10, marginLeft:10}}/>
-              </View>
                 <View style={[styles.mainbutton, {display:item.isCollapsed?  "none" : "flex"}]}>
-                  <Link style={{marginHorizontal:"auto", color: "#E8D7BD",}} push href={`courses/${item.lessonid}`}>Empezar</Link>
+                  <Link style={{marginHorizontal:"auto", color: "#E8D7BD",}} push href={`lesson/${item.lessonid}`}>Empezar</Link>
                 </View>
             </View>
           </TouchableOpacity>
@@ -81,9 +81,7 @@ const Home = () => {
 
 const styles = StyleSheet.create({
     container: {
-      flex: 3,
-      alignItems: "center",
-      backgroundColor: "#E8D7BD",
+      flex: 1,
     },
     title:{
       color: "#fff",
@@ -99,7 +97,7 @@ const styles = StyleSheet.create({
       justifyContent: "center",
       overflow: "hidden",
       borderRadius: 20,
-      margin: 5,
+      marginHorizontal: 23,
       marginBottom:15
     },
     mainbutton:{

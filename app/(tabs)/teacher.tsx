@@ -1,36 +1,83 @@
-import { Text, ScrollView,View, StyleSheet, TextInput, Platform, TouchableOpacity } from "react-native";
-
+import { View, StyleSheet } from "react-native";
+import { GiftedChat, IMessage, Bubble, BubbleProps } from "react-native-gifted-chat";
 import { useState } from "react";
+import { Colors } from "@/constants/Colors";
+import { LinearGradient } from 'expo-linear-gradient';
+const CustomBubble = (props : BubbleProps<IMessage>) => {
+  return (
+    <Bubble
+      {...props}
+      wrapperStyle={{
+        right: {
+          // Estilo de la burbuja para los mensajes enviados
+          backgroundColor: Colors.light,
+          borderRadius: 0,
+          borderTopLeftRadius : 10,
+          borderBottomLeftRadius : 10,
+          marginBottom: 10,
+          right: -10,
+          justifyContent: "flex-end",
+          marginLeft: 0
+        },
+        left: {
+          // Estilo de la burbuja para los mensajes recibidos
+          backgroundColor: Colors.dark,
+          borderRadius: 0,
+          borderTopRightRadius : 10,
+          borderBottomRightRadius : 10,
+          marginBottom: 10,    
+          left: -55,
 
+        },
+      }}
+      textStyle={{
+        right: {
+          // Estilo del texto de los mensajes enviados
+          color: '#fff',
+        },
+        left: {
+          // Estilo del texto de los mensajes recibidos
+          color: '#fff',
+        },
+      }}
+    />
+  );
+};
 const Teacher = () => {
+  const Context = {
+    User: {
+      _id: 12,
+      name: "User",
+      avatar: "https://place"
+    }
+  };
   function sendMessage(input: string) {
-    const message = {
-      isYou: true,
-      hour: new Date().getTime(),
-      content: input
+    const NewMessage: IMessage = {
+      _id: messages.length + 1,
+      text: input,
+      createdAt: new Date(),
+      user: Context.User,
     };
-    setMessages((prevMessages) => [...prevMessages, message]);
-    setText('');
+    setMessages((prevMessages) => [NewMessage, ...prevMessages]);
   }
-  const [text, setText] = useState('');
-  const [messages, setMessages] = useState([
-    { isYou: true, hour: 1620263151, content: "¡Hola! ¿Cómo estás?" },
-    { isYou: false, hour: 1620263251, content: "Hola, estoy bien gracias." },
-    { isYou: true, hour: 1620263351, content: "¿Qué has estado haciendo últimamente?" },
-    { isYou: false, hour: 1620263451, content: "He estado trabajando en un nuevo proyecto." },
-    { isYou: true, hour: 1620263551, content: "Suena interesante. ¿Puedo saber más al respecto?" },
-    { isYou: false, hour: 1620263651, content: "¡Claro! Es un proyecto de desarrollo web." },
-    { isYou: true, hour: 1620263751, content: "Genial, me encanta el desarrollo web." },
-    { isYou: false, hour: 1620263851, content: "Sí, es muy gratificante ver tus creaciones cobrar vida en la web." },
-    { isYou: true, hour: 1620263951, content: "Totalmente de acuerdo. Es emocionante." },
-    { isYou: false, hour: 1620264051, content: "Bueno, tengo que irme. ¡Hablamos luego!" }
-  ]);
-// !TODO: fix the position of the sender
-// and the scroll issue
+  const [messages, setMessages] = useState<IMessage[]>([{
+    _id: 1,
+    text: "Soy tu Profesor, ¿En qué puedo ayudarte?",
+    createdAt: new Date(),
+    user: {_id:2, name: "Profesor", avatar: "https://place"},
+  }]);
     return(
-      <View style={styles.container}>
-        <Text>a</Text>
-      </View>
+        <View style={{ flex: 1 }}>
+          <LinearGradient colors={[Colors.beach , Colors.light]} start={{x:0 , y:0.5}} end={{x:0,y:.9}} style={{position: 'absolute',left: 0,right: 0,top: 0,height: "100%"}} />
+          <GiftedChat
+          
+          renderBubble={CustomBubble}
+          renderUsernameOnMessage={true}
+          messages={messages}
+          onSend={input => sendMessage(input[0].text)}
+          user={{_id: Context.User._id}}
+          />
+        </View>
     );
 }
 const styles = StyleSheet.create({

@@ -3,6 +3,7 @@ import { Text, SafeAreaView, TextInput, StyleSheet, View, Switch, TouchableOpaci
 import { Image } from 'expo-image';
 import { useFonts } from 'expo-font'; //call the font of figma
 import { Link } from 'expo-router';
+import SwitchExample from '@/components/Switch';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect, useState } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -49,7 +50,7 @@ export default function RootLayout() {
               <Image 
               source={showPassword ? require("../assets/images/eye.png") : require("../assets/images/eye-closed.png")}
               style={{ width: 18, height: 12, marginVertical:"auto", top:13, position: 'absolute'}}
-              contentFit='none'
+              contentFit='cover'
               />
             </TouchableOpacity>
         </View>
@@ -87,7 +88,7 @@ export default function RootLayout() {
               <Image 
               source={showPassword ? require("../assets/images/eye.png") : require("../assets/images/eye-closed.png")}
               style={{ width: 18, height: 12, marginVertical:"auto", top:13, position: 'absolute'}}
-              contentFit='none'
+              contentFit='cover'
               />
             </TouchableOpacity>
         </View>
@@ -147,13 +148,7 @@ export default function RootLayout() {
           </View>
           <View style={{justifyContent: "center",alignItems: "center", top:-30}}>
             <Text style={styles.text}>{welcome}</Text>
-            <View style={{flexDirection: "row", marginLeft:-50}}><Text style={styles.text}>Inicio de sesion  </Text><Text style={styles.text}>registro</Text></View>
-            <Switch
-              trackColor={{ false: "#767577", true: "#81b0ff" }}
-              thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
-              onValueChange={toggleSwitch}
-              value={isEnabled}
-            />
+            <SwitchExample selectedOption={isEnabled} setSelectedOption={toggleSwitch}/>
           </View>
           {content}
   </ThemeProvider>

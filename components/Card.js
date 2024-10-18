@@ -1,5 +1,5 @@
-import { View, Text, StyleSheet, Image } from "react-native";
-
+import { View, Text, StyleSheet } from "react-native";
+import { Image } from "expo-image";
 
 const Card = ({titulo, cuerpo, imagenes}) => {
     return (
@@ -9,7 +9,7 @@ const Card = ({titulo, cuerpo, imagenes}) => {
                 <Text style={styles.cuerpo}>{cuerpo}</Text>
             </View>
             <View style={styles.container}>
-                <Text style={styles.imagenes}>{imagenes}</Text>
+                <Image source={imagenes} style={styles.imagenes}/>
             </View>
         </View>
     );
@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
+        marginBottom:41,
     },
     textContainer: {
         flexDirection: 'column',
@@ -33,7 +34,8 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
     imagenes: {
-        fontSize: 12,
+        width: 50,
+        height: 50,
         
     },
 });

@@ -38,7 +38,7 @@ const Test = () => {
         <View style={styles.container}>
             <LinearGradient colors={['#E8D7BD' , '#055776']} start={{x:0.2 , y:0.4}} end={{x:0,y:.85}} style={{position: 'absolute',left: 0,right: 0,top: 0,height: "100%"}} />
             <View style={{justifyContent: "center"}}>
-                <Text style={{margin:"auto", fontSize:32}}> Pruebas </Text>
+                <Text style={{margin:"auto", fontSize:32, marginTop:44, marginBottom:17}}> Pruebas </Text>
                 <View style={{backgroundColor:"#085877", paddingVertical:15, width:400}}>
                     <Text style={{marginHorizontal:"auto", fontSize:20, color:"#FFFFFF"}}>Selecciona una Leccion</Text>
                 </View>
@@ -47,22 +47,7 @@ const Test = () => {
                 renderItem={({ item }) => (
                     <View >
                        
-                        <TouchableOpacity onPress={() => setradioGroup(item.id)} style={{flexDirection:"row",
-                                                                                         marginVertical:"auto",
-                                                                                         marginHorizontal:"auto", 
-                                                                                         backgroundColor:"#085877", 
-                                                                                         marginTop:20, 
-                                                                                         paddingVertical:5, 
-                                                                                         paddingHorizontal:10,
-                                                                                         borderRadius:10,
-                                                                                         width:300,
-                                                                                         shadowColor: '#000',
-                                                                                         shadowOffset: { width: 0, height: 5 }, // Ajusta la sombra hacia abajo
-                                                                                         shadowOpacity: 0.25,
-                                                                                         shadowRadius: 3.84,
-                                                                                         // Propiedades para Android
-                                                                                         elevation: 3,
-                                                                                         }}>
+                        <TouchableOpacity onPress={() => setradioGroup(item.id)} style={styles.test}>
                                 
                             <RadioButton
                             value={item.title}
@@ -75,16 +60,7 @@ const Test = () => {
                 contentContainerStyle={{height:100, flex:2}}
                 />
                 
-                <Link push href={"test/type/"+radioGroup} style={{fontSize:10, 
-                                                                backgroundColor:"#1D2833",
-                                                                textAlign: 'center',
-                                                                paddingVertical:6,
-                                                                overflow:"hidden", 
-                                                                color:"#FFFFFF", 
-                                                                width:400,
-                                                                position: "absolute",
-                                                                bottom:"20%",
-                                                                }}>
+                <Link push href={"test/type/"+radioGroup} style={styles.button}>
                 Ir a la Prueba
                 </Link>
             </View>
@@ -103,9 +79,16 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: "bold",
     },
-    button: {
-        margin: 10,
-    },
+    button: {fontSize:10, 
+        backgroundColor:"#1D2833",
+        textAlign: 'center',
+        paddingVertical:12,
+        overflow:"hidden", 
+        color:"#FFFFFF", 
+        width:400,
+        position: "absolute",
+        bottom:"20%",
+        },
     input: {
         margin: 10,
         padding: 10,
@@ -118,6 +101,22 @@ const styles = StyleSheet.create({
     radioInput: {
         margin: 10,
     },
+    test:{flexDirection:"row",
+        marginVertical:"auto",
+        marginHorizontal:"auto", 
+        backgroundColor:"#085877", 
+        marginTop:20, 
+        paddingVertical:5, 
+        paddingHorizontal:10,
+        borderRadius:10,
+        width:300,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 5 }, // Ajusta la sombra hacia abajo
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        // Propiedades para Android
+        elevation: 3,
+        },
 });
 
 export default Test;
